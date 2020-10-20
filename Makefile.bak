@@ -1,0 +1,86 @@
+
+CC		=	gcc
+#CFLAGS		=	-c -O6
+INCLUDE		=	/usr/X11/include/
+CFLAGS		=	-Wall -I$(INCLUDE) -DGNU_C -O0
+LD		=	gcc
+LDFLAGS		=
+LDLIBS		=	-lX11
+
+INCLUDES	=	system.h \
+			cpu.h \
+			atom.h \
+			monitor.h \
+			keyboard.h \
+			file.h \
+			screen.h
+
+SRC		=	main.c \
+			atom.c \
+			cpu.c \
+			monitor.c \
+			screen.c \
+			keyboard.c \
+			file.c
+
+OBJS		= 	$(SRC:.c=.o)
+
+MAKEDEPEND      = makedepend
+
+.SUFFIXES: .c 
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+
+all		: $(OBJS)
+	$(LD) $(LDFLAGS) $(OBJS) $(LDLIBS) -o atom
+
+pack:
+	tar -cvf atom.tar *.c *.h Makefile
+	gzip atom.tar
+
+depend: $(SRC)
+	@echo -n "Doing a makedepend ..";$(MAKEDEPEND) -I$(INCLUDE) $(SRC);echo
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+main.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+main.o: /usr/include/sys/cdefs.h /usr/include/stdlib.h
+main.o: /usr/include/features.h /usr/include/errno.h
+main.o: /usr/include/linux/errno.h /usr/include/alloca.h
+main.o: /usr/include/string.h /usr/include/fcntl.h /usr/include/sys/types.h
+main.o: /usr/include/linux/types.h /usr/include/linux/fcntl.h
+main.o: /usr/include/ctype.h /usr/include/signal.h
+main.o: /usr/include/linux/signal.h system.h cpu.h atom.h screen.h keyboard.h
+main.o: /usr/X11/include/X11/Xlib.h /usr/X11/include/X11/X.h
+main.o: /usr/X11/include/X11/Xfuncproto.h /usr/X11/include/X11/Xosdefs.h
+main.o: /usr/X11/include/X11/keysym.h /usr/X11/include/X11/keysymdef.h
+main.o: monitor.h
+atom.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+atom.o: /usr/include/sys/cdefs.h system.h cpu.h atom.h screen.h
+cpu.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+cpu.o: /usr/include/sys/cdefs.h /usr/include/stdlib.h /usr/include/features.h
+cpu.o: /usr/include/errno.h /usr/include/linux/errno.h /usr/include/alloca.h
+cpu.o: system.h atom.h monitor.h cpu.h
+monitor.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+monitor.o: /usr/include/sys/cdefs.h /usr/include/ctype.h
+monitor.o: /usr/include/features.h system.h atom.h cpu.h monitor.h file.h
+screen.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+screen.o: /usr/include/sys/cdefs.h /usr/include/malloc.h
+screen.o: /usr/include/features.h /usr/X11/include/X11/Xlib.h
+screen.o: /usr/include/sys/types.h /usr/include/linux/types.h
+screen.o: /usr/X11/include/X11/X.h /usr/X11/include/X11/Xfuncproto.h
+screen.o: /usr/X11/include/X11/Xosdefs.h /usr/X11/include/X11/Xutil.h
+screen.o: system.h cpu.h screen.h keyboard.h /usr/X11/include/X11/keysym.h
+screen.o: /usr/X11/include/X11/keysymdef.h atom.h
+keyboard.o: /usr/include/stdio.h /usr/include/libio.h
+keyboard.o: /usr/include/_G_config.h /usr/include/sys/cdefs.h
+keyboard.o: /usr/X11/include/X11/Xlib.h /usr/include/sys/types.h
+keyboard.o: /usr/include/linux/types.h /usr/X11/include/X11/X.h
+keyboard.o: /usr/X11/include/X11/Xfuncproto.h /usr/X11/include/X11/Xosdefs.h
+keyboard.o: /usr/X11/include/X11/Xutil.h system.h cpu.h atom.h keyboard.h
+keyboard.o: /usr/X11/include/X11/keysym.h /usr/X11/include/X11/keysymdef.h
+file.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+file.o: /usr/include/sys/cdefs.h /usr/include/ctype.h /usr/include/features.h
+file.o: /usr/include/string.h system.h atom.h cpu.h monitor.h file.h
