@@ -128,7 +128,7 @@ void init_screen()
 
 	image = XCreateImage (display,
 			visual,
-			depth,
+			8,
 			ZPixmap,
 			offset,
 			data,
