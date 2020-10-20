@@ -120,8 +120,10 @@ void load_image (char *filename, int addr)
         close (fd);
         SetMemory(start_addr, addr - 1, ROM);
     }
-    else
+    else {
         printf("load image: could not find %s\n", filename);
+        exit (1);
+    }
 }
 
 
