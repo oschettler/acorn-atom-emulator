@@ -47,7 +47,6 @@ setPixel(int x, int y, sf::Color color, const char* where = "???")
         if (color == colours[i])
             break;
     }
-    if (color == colours[0])
     //printf("PIXEL(%s) %d, %d col=%d\n", where, x, y, i);
 
     image.setPixel(x, y, color);
