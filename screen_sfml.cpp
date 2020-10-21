@@ -48,7 +48,7 @@ setPixel(int x, int y, sf::Color color, const char* where = "???")
             break;
     }
     if (color == colours[0])
-    printf("PIXEL(%s) %d, %d col=%d\n", where, x, y, i);
+    //printf("PIXEL(%s) %d, %d col=%d\n", where, x, y, i);
 
     image.setPixel(x, y, color);
 }
@@ -121,12 +121,12 @@ void atom_hardware (void)
 				break;
             
             case sf::Event::Resized:
-                printf("Resize not handled\n");
+                //printf("Resize not handled\n");
                 break;
 
             case sf::Event::LostFocus:
             case sf::Event::GainedFocus:
-                printf("Focus not handled\n");
+                //printf("Focus not handled\n");
                 break;
         }
     }
