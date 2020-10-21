@@ -3,7 +3,8 @@
 #include	"system.h"
 #include	"cpu.h"
 #include    "atom.h"
-#include "screen.h"
+#include    "keyboard.h"
+#include    "screen.h"
 
 
 UBYTE memory[65536],

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 
 #include "system.h"
@@ -82,7 +83,8 @@ int monitor ()
 		char    *t;
 
 		printf ("> ");
-		gets (s);
+		fgets (s, 127, stdin);
+		s[strlen(s) - 1] = 0;
 
 		t = get_token(s);
 

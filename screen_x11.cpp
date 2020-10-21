@@ -1,3 +1,5 @@
+#ifdef HOST_X11
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -128,7 +130,7 @@ void init_screen()
 
 	image = XCreateImage (display,
 			visual,
-			8,
+			depth,
 			ZPixmap,
 			offset,
 			data,
@@ -481,3 +483,4 @@ void update_video(UWORD addr, UBYTE v)
     /* XPutImage (display, window, gc, image, 0, 0, 0, 0, WIDTH, HEIGHT); */
 }
 
+#endif

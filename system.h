@@ -13,7 +13,9 @@ typedef unsigned char		UBYTE;
 typedef unsigned short int	UWORD;
 typedef unsigned long int	ULONG;
 
+#ifndef HOST_SFML
 typedef char bool;
+#endif
 
 #define TRUE  1
 #define FALSE 0

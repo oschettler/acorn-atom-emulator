@@ -1,3 +1,8 @@
+#ifdef HOST_SFML
+#include <SFML/Window.hpp>    
+#include <SFML/Graphics.hpp>
+extern sf::RenderWindow window;
+#endif
 
 void init_screen(void);
 void exit_screen(void);

@@ -4,6 +4,7 @@
 #include    <fcntl.h>
 #include    <ctype.h>
 #include    <signal.h>
+#include    <unistd.h>
 
 #define FALSE   0
 #define TRUE    1
@@ -18,9 +19,9 @@
 int    countdown;
 
 void Atom_OS (void);
-void load_image (char *filename, int addr);
+void load_image (const char *filename, int addr);
 
-void sigint_handler ()
+void sigint_handler (int param)
 {
     printf ("*** break ***\n");
 
@@ -81,9 +82,9 @@ int main (int argc, char **argv)
 
 void Atom_OS ()
 {
-    load_image ("akernel.rom", 0xF000);
-    load_image ("abasic.rom", 0xC000);
-    load_image ("afloat.rom", 0xD000);
+    load_image ("roms/Atom_Kernel.rom", 0xF000);
+    load_image ("roms/Atom_Basic.rom", 0xC000);
+    load_image ("roms/Atom_FloatingPoint.rom", 0xD000);
 
     attrib[0xb000] = HARDWARE;
     attrib[0xb002] = HARDWARE;
@@ -91,7 +92,11 @@ void Atom_OS ()
 
     CPU_Reset ();
 
+#ifdef HOST_SFML
+    while (window.isOpen())
+#else
     for(;;)
+#endif
     {
         memory[0xb002] = (memory[0xb002] & 0x7f);
         /* fprintf(stderr, "\nL"); */
@@ -105,7 +110,7 @@ void Atom_OS ()
 }
 
 
-void load_image (char *filename, int addr)
+void load_image (const char *filename, int addr)
 {   int start_addr = addr;
     int    fd;
 

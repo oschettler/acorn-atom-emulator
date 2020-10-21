@@ -1,3 +1,5 @@
+#ifdef HOST_X11
+
 #include	<stdio.h>
 
 #include <X11/Xlib.h>
@@ -246,3 +248,5 @@ void set_keyboard (UBYTE row)
                      | (alt ? 0 : 0x40 );
     /* fprintf(stderr, "%d=%02x ", row, memory[ 0xb001 ] ); */
 }
+
+#endif

@@ -41,7 +41,7 @@
 #include	<stdio.h>
 #include	<stdlib.h>
 
-static char *rcsid = "$Id: cpu.c,v 1.11 1996/06/30 23:30:28 david Exp $";
+static const char *rcsid = "$Id: cpu.c,v 1.11 1996/06/30 23:30:28 david Exp $";
 
 #include    "system.h"
 #include    "atom.h"
